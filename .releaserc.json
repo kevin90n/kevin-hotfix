@@ -1,0 +1,22 @@
+{
+  "tagFormat": "${version}",
+  "branches": [
+    "main",
+    {
+      "name": "hotfix",
+      "prerelease": "hotfix"
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/github",
+      {
+        "successComment": false,
+        "failComment": false
+      }
+    ]
+  ],
+  "publish": false
+}
