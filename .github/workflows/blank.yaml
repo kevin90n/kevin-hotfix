@@ -44,7 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.KEVIN }}
         run: |
           export GITHUB_TOKEN=$(cat /credentials/github_token)
-          ${{ GITHUB_WORKSPACE }}/merger.sh -h alpha -b main
+          $GITHUB_WORKSPACE/merger.sh -h alpha -b main
   mergemaintohotfix:
     needs: mergealphatomain
     runs-on: ubuntu-latest
