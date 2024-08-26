@@ -1,0 +1,46 @@
+name: Release2
+on:
+  push:
+    branches:
+      - main
+      #   workflow_run:
+      #      workflows: ["example-cron-action"]
+      #      types:
+      #        - completed
+
+permissions:
+  contents: read # for checkout
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+      - name: install
+        run: npm install @semantic-release/git -D
+    #  - name: install back-merge
+    #    run: npm install @saithodev/semantic-release-backmerge -D
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.KEVIN }}
+        run: npx semantic-release
+  mergemaintohotfix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Merge main branch -> hotfix
+        env:
+          GITHUB_TOKEN: ${{ secrets.KEVIN }}
+        run: |
+          $GITHUB_WORKSPACE/merger.sh -h main -b hotfix
