@@ -55,4 +55,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.KEVIN }}
         run: |
           export GITHUB_TOKEN=$(cat /credentials/github_token)
-          ${{ GITHUB_WORKSPACE }}/merger.sh -h main -b hotfix
+          $GITHUB_WORKSPACE/merger.sh -h main -b hotfix
