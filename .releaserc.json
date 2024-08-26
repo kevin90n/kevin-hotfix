@@ -16,6 +16,12 @@
         "successComment": false,
         "failComment": false
       }
+    ],
+    [
+      "@saithodev/semantic-release-backmerge",
+      {
+        "backmergeBranches": [{"from": "main", "to": "hotfix"}]
+      }
     ]
   ],
   "publish": false
