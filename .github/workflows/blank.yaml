@@ -43,7 +43,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.KEVIN }}
         run: |
-          export GITHUB_TOKEN=$(cat /credentials/github_token)
           $GITHUB_WORKSPACE/merger.sh -h alpha -b main
   mergemaintohotfix:
     needs: mergealphatomain
@@ -54,5 +53,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.KEVIN }}
         run: |
-          export GITHUB_TOKEN=$(cat /credentials/github_token)
           $GITHUB_WORKSPACE/merger.sh -h main -b hotfix
