@@ -2,7 +2,7 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - alpha
       #   workflow_run:
       #      workflows: ["example-cron-action"]
       #      types:
@@ -29,8 +29,8 @@ jobs:
           node-version: "lts/*"
       - name: install
         run: npm install @semantic-release/git -D
-      - name: install back-merge
-        run: npm install @saithodev/semantic-release-backmerge -D
+    #  - name: install back-merge
+    #    run: npm install @saithodev/semantic-release-backmerge -D
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.KEVIN }}
@@ -43,7 +43,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.KEVIN }}
         run: |
-          export GITHUB_TOKEN=$(cat /credentials/github_token)
           $GITHUB_WORKSPACE/merger.sh -h alpha -b main
   mergemaintohotfix:
     needs: mergealphatomain
@@ -54,5 +53,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.KEVIN }}
         run: |
-          export GITHUB_TOKEN=$(cat /credentials/github_token)
           $GITHUB_WORKSPACE/merger.sh -h main -b hotfix
