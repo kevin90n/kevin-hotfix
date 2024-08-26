@@ -2,7 +2,7 @@ name: Release3
 on:
   push:
     branches:
-      - main
+      - hotfix
       #   workflow_run:
       #      workflows: ["example-cron-action"]
       #      types:
