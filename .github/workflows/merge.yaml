@@ -1,0 +1,68 @@
+#name: "example-cron-action"
+#on:
+#  schedule:
+#    - cron:  '*/6 * * * *'    # At 2am every day
+#
+#jobs:
+#  #  mergebetatoprod:
+#  #    needs: mergealphatobeta
+#  #    runs-on: ubuntu-latest
+#  #    steps:
+#  #      - uses: actions/checkout@master
+#  #      - name: Merge all development branches -> production
+#  #        uses: devmasx/merge-branch@master
+#  #        with:
+#  #          type: now
+#  #          from_branch: beta
+#  #          target_branch: main
+#  #          message: Merge beta into main
+#  #          github_token: ${{ github.token }}
+#
+#  # mergealphatobeta:
+#  #   runs-on: ubuntu-latest
+#  #   steps:
+#  #     - uses: actions/checkout@master
+#  #     - name: Merge all alpha branches -> beta
+#  #       uses: devmasx/merge-branch@master
+#  #       with:
+#  #         type: now
+#  #         from_branch: alpha
+#  #         target_branch: beta
+#  #         message: Merge alpha into beta
+#  #         github_token: ${{ github.token }}
+#
+#  mergebetatoprod:
+#    needs: mergealphatobeta
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@master
+#      - name: Merge beta branch -> main
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.KEVIN }}
+#        run: |
+#          git clone https://github.com/kevin90n/kevin-semantic.git kevin-semantic && cd kevin-semantic
+#          git config --global user.email "my_useremail"
+#          git config --global user.name "my_username"
+#          git remote set-url origin https://$GITHUB_TOKEN@github.com/kevin90n/kevin-semantic.git
+#          git checkout beta
+#          git checkout main
+#          git merge beta
+#          git push -u origin main
+#
+#
+#  mergealphatobeta:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@master
+#      - name: Merge alpha branch -> beta
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.KEVIN }}
+#        run: |
+#          git clone https://github.com/kevin90n/kevin-semantic.git kevin-semantic && cd kevin-semantic
+#          git config --global user.email "my_useremail"
+#          git config --global user.name "my_username"
+#          git remote set-url origin https://$GITHUB_TOKEN@github.com/kevin90n/kevin-semantic.git
+#          git checkout alpha
+#          git checkout beta
+#          git merge alpha
+#          git push -u origin beta
