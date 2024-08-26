@@ -35,12 +35,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.KEVIN }}
         run: npx semantic-release
-  mergemaintohotfix:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Merge main branch -> hotfix
-        env:
-          GITHUB_TOKEN: ${{ secrets.KEVIN }}
-        run: |
-          $GITHUB_WORKSPACE/merger.sh -h main -b hotfix
