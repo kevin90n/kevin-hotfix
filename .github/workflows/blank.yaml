@@ -2,7 +2,7 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - alpha
       #   workflow_run:
       #      workflows: ["example-cron-action"]
       #      types:
