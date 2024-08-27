@@ -30,6 +30,8 @@ jobs:
       - name: install
         run: npm install @semantic-release/git -D
       - name: install back-merge
+        env:
+          GITHUB_TOKEN: ${{ secrets.KEVIN }}
         run: npm install @saithodev/semantic-release-backmerge -D
       - name: Release
         env:
